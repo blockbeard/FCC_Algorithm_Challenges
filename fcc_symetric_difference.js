@@ -2,9 +2,6 @@
  * Created by chris_000 on 05/07/2016.
  */
 
-function filterFunction(element, index, arrray){
-    return (element1 !== testElement);
-}
 
 function sym(args) {
 var mergedArray = [],
@@ -12,7 +9,7 @@ var mergedArray = [],
     for (var i = 0; i < arguments.length; i++){
     mergedArray = mergedArray.concat(arguments[i]);
     }
-
+mergedArray.sort();
     for (var n = 0; n < mergedArray.length; n++){
         testElement = mergedArray[n];
         console.log("test element = " + testElement);
@@ -20,13 +17,16 @@ var mergedArray = [],
 
         if (mergedArray.lastIndexOf(testElement) !== n){
             console.log("if triggered");
-         mergedArray.filter(filterFunction(element, index, array));
+         mergedArray = mergedArray.filter(function(element){
+            return (element !== testElement);
+             });
+         }
         }
 
-    }
+
 
     console.log(mergedArray);
-    return args;
+    return mergedArray;
 }
 
-sym([1, 2, 3], [5, 2, 1, 4], [2, 3, 7]);
+sym([1, 2, 3], [5, 2, 1, 4]);
