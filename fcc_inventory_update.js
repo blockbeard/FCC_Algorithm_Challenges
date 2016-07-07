@@ -25,9 +25,16 @@ function updateInventory(arr1, arr2) {
     }
     // sort arr1 by alphabetical
     arr1.sort(function(a,b){
-        var x = a[1].toLowerCase,
-            y = b[1].toLowerCase;
-        return x-y});
+        var x = a[1].toLowerCase(),
+            y = b[1].toLowerCase();
+        if(x < y){
+            return -1;
+        }if(y < x){
+            return 1;
+        }if(x == y){
+            return 0;
+        }
+    });
     console.log(arr1);
     return arr1;
 }
