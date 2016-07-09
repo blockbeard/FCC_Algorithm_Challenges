@@ -1,21 +1,37 @@
 /**
  * Created by chris_000 on 07/07/2016.
  */
+
 var permutations = [],
     filteredPermutations = [];
 
-function doPerm(str, arr) {
-    if (typeof (str) == 'string') str = str.split('');
-    if (str.length == 0) permutations.push(arr.join(''));
-    for (var i = 0; i < str.length; i++) {
-        var x = str.splice(i, 1);
-        arr.push(x);
-        doPerm(str, arr);
-        arr.pop();
-        str.splice(i, 0, x);
+function permutationArr(num)
+{
+    var arr = (num + '').split('');
+
+    function swap(a, b)
+    {
+        var tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
     }
 
+    function generate(n) {
+        if (n == 1) {
+            permutations.push(arr.join());
+        } else {
+            for (var i = 0; i != n; ++i) {
+                generate(n - 1);
+                swap(n % 2 ? 0 : i, n - 1);
+            }
+        }
+    }
+
+    generate(arr.length);
+   // return permutations;
 }
+
+
 
 function killRepeats(permutations){
     filteredPermutations = permutations.filter(function(currentValue){
@@ -26,12 +42,9 @@ function killRepeats(permutations){
 
 
 function permAlone(str) {
-    doPerm(str, []);
-    console.log(permutations.length);
+    permutationArr(str);
     killRepeats(permutations);
-    console.log(filteredPermutations.length);
     return filteredPermutations.length;
-
 
 
 }
