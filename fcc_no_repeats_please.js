@@ -1,7 +1,8 @@
 /**
  * Created by chris_000 on 07/07/2016.
  */
-var permutations = [];
+var permutations = [],
+    filteredPermutations = [];
 
 function doPerm(str, arr) {
     if (typeof (str) == 'string') str = str.split('');
@@ -13,23 +14,27 @@ function doPerm(str, arr) {
         arr.pop();
         str.splice(i, 0, x);
     }
+
 }
 
 function killRepeats(permutations){
-    permutations = permutations.filter(function(str){
-        var doubles = /(.)\1/;
-            return (!doubles.test(str));
+    filteredPermutations = permutations.filter(function(currentValue){
+           return (!/(.)\1/.test(currentValue));
             });
-    return permutations;
+
     }
 
 
 function permAlone(str) {
-    return killRepeats(doPerm(str, [])).length;
+    doPerm(str, []);
+    console.log(permutations.length);
+    killRepeats(permutations);
+    console.log(filteredPermutations.length);
+    return filteredPermutations.length;
+
 
 
 }
-
 permAlone('aab');
 
 
