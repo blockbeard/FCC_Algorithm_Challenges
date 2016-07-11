@@ -18,7 +18,7 @@ function permutationArr(num)
 
     function generate(n) {
         if (n == 1) {
-            permutations.push(arr.join());
+            permutations.push(arr.join(""));
         } else {
             for (var i = 0; i != n; ++i) {
                 generate(n - 1);
@@ -28,26 +28,26 @@ function permutationArr(num)
     }
 
     generate(arr.length);
-   // return permutations;
+    console.log(permutations);
+}
+function duplicates(str){
+    var dupes = new RegExp(/(.)\1/);
+    return (!dupes.test(str));
 }
 
-
-
-function killRepeats(permutations){
-    filteredPermutations = permutations.filter(function(currentValue){
-           return (!/(.)\1/.test(currentValue));
-            });
-
-    }
-
+function killRepeats(){
+    filteredPermutations = permutations.filter(duplicates);
+}
 
 function permAlone(str) {
     permutationArr(str);
-    killRepeats(permutations);
+    killRepeats();
+    console.log(filteredPermutations);
+    console.log(filteredPermutations.length);
     return filteredPermutations.length;
 
 
 }
-permAlone('aab');
+permAlone('aaabb');
 
 
