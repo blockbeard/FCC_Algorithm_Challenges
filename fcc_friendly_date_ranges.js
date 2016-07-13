@@ -110,7 +110,7 @@ function makeFriendlyDates(arr) {
         return friendlyEnd;
     }
 
-    if ((start - finish) === 0){
+    if ((start - finish) === 0){//this works but I don't understand why if(start == finish) doesn't
         console.log([makeFriendlyStart()]);
         console.log(start + " " + finish);
         return [makeFriendlyStart()];
