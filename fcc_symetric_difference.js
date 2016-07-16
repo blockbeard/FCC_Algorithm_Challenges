@@ -4,29 +4,35 @@
 
 
 function sym(args) {
-var mergedArray = [],
-    testElement;
-    for (var i = 0; i < arguments.length; i++){
-    mergedArray = mergedArray.concat(arguments[i]);
+    function symetric(value, index, arr) {
+        return arr.indexOf(value) === arr.lastIndexOf(value);
     }
-mergedArray.sort();
-    for (var n = 0; n < mergedArray.length; n++){
-        testElement = mergedArray[n];
-        console.log("test element = " + testElement);
-        console.log("n = " + n +" lastIndexOf = " + mergedArray.lastIndexOf(testElement));
-
-        if (mergedArray.lastIndexOf(testElement) !== n){
-            console.log("if triggered");
-         mergedArray = mergedArray.filter(function(element){
-            return (element !== testElement);
-             });
-         }
-        }
+    function highlander(value, index, arr){
+        return index == arr.indexOf(value);
+    }
 
 
+    var mergedArray = [],
+        filteredArray = [],
+        tempArr;
+    for (var i = 0; i < arguments.length; i++) {
+        tempArr = arguments[i].filter(highlander);
+        mergedArray = mergedArray.concat(tempArr);
+        filteredArray = mergedArray.filter(symetric);
+        mergedArray = filteredArray;
+        mergedArray.sort();
+        console.log("i = " + i + " mergedArray = " + mergedArray);
+        filteredArray = mergedArray.filter(symetric);
+        mergedArray = filteredArray;
 
+    }
+
+    mergedArray.sort();
     console.log(mergedArray);
+
+
     return mergedArray;
+
 }
 
-sym([1, 2, 3], [5, 2, 1, 4]);
+sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]);
