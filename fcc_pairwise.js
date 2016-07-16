@@ -8,8 +8,8 @@ function pairwise(arr, arg) {
 
     for (var i = 0; i < arr.length -1; i++){
         for (var j = i+1; j < arr.length; j++){
-            if (resultArr.indexOf(arr[i]) === -1 && resultArr.indexOf(arr[j]) === -1 && (arr[i] + arr[j] === arg)){
-           resultArr.push(arr[i], arr[j]);
+            if (resultArr.indexOf(i) === -1 && resultArr.indexOf(j) === -1 && (arr[i] + arr[j] === arg)){
+           resultArr.push(i, j);
                 result += i + j;
             }
         }
